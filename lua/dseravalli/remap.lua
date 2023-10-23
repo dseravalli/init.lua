@@ -7,6 +7,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer" })
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('v', "<leader>p", "\"_dP", { desc = "Paste without overwrite" })
+vim.keymap.set('n', 'bn', ':bn<CR>')
+vim.keymap.set('n', 'bp', ':bp<CR>')
 
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
