@@ -4,6 +4,7 @@ return {
   'tpope/vim-sleuth',
   'mbbill/undotree',
   'szw/vim-maximizer',
+
   { 'folke/which-key.nvim',  opts = {} },
 
   {
@@ -42,6 +43,31 @@ return {
     },
     config = function()
       require("nvim-tree").setup {}
+    end,
+  },
+
+  -- refactoring
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+    end,
+  },
+
+  -- tailwind class sorter
+  {
+    'laytan/tailwind-sorter.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+    build = 'cd formatter && npm i && npm run build',
+    config = function()
+      require('tailwind-sorter').setup({
+        on_save_enabled = true,
+        on_save_pattern = { '*.html', '*.js', '*.jsx', '*.tsx', '*.twig', '*.hbs', '*.php', '*.heex', '*.astro' },
+      })
     end,
   },
 }
