@@ -4,6 +4,7 @@ return {
   'tpope/vim-sleuth',
   'mbbill/undotree',
   'szw/vim-maximizer',
+  'qpkorr/vim-bufkill',
 
   { 'folke/which-key.nvim',  opts = {} },
 
