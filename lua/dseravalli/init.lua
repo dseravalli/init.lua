@@ -286,3 +286,9 @@ cmp.setup {
     { name = 'luasnip',  group_index = 2 },
   }
 }
+
+vim.filetype.add({
+  pattern = {
+    ['.env.*'] = 'sh',
+  },
+})
