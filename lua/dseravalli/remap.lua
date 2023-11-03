@@ -6,7 +6,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('v', '<leader>p', "\"_dP", { desc = "Paste without overwrite" })
 vim.keymap.set('n', 'bn', ':bn<CR>')
 vim.keymap.set('n', 'bp', ':bp<CR>')
-vim.keymap.set('n', '<leader>c', ':BD<CR>')
+vim.keymap.set('n', '<leader>x', ':BufferKill<CR>', { desc = "Close buffer" })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

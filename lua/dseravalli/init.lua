@@ -50,6 +50,9 @@ pcall(require('telescope').load_extension, 'fzf')
 require("dseravalli.set")
 require("dseravalli.remap")
 
+-- Custom BufferKill command (from LunarVim)
+vim.api.nvim_command('command! BufferKill lua require("dseravalli.bufkill").buf_kill()')
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -168,7 +171,6 @@ end
 
 -- document existing key chains
 require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },

@@ -4,7 +4,6 @@ return {
   'tpope/vim-sleuth',
   'mbbill/undotree',
   'szw/vim-maximizer',
-  'qpkorr/vim-bufkill',
   'christoomey/vim-tmux-navigator',
 
   { 'folke/which-key.nvim',  opts = {} },
