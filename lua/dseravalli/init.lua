@@ -294,3 +294,10 @@ vim.filetype.add({
     ['.env.*'] = 'sh',
   },
 })
+
+vim.filetype.add({
+  pattern = {
+    ['.env.*'] = 'sh',
+    ['Podfile'] = 'ruby',
+  },
+})
