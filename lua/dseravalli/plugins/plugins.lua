@@ -5,6 +5,7 @@ return {
   'mbbill/undotree',
   'szw/vim-maximizer',
   'christoomey/vim-tmux-navigator',
+  'github/copilot.vim',
 
   { 'folke/which-key.nvim',  opts = {} },
 
