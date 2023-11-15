@@ -63,27 +63,37 @@ return {
       -- Install JS specific config
       require('dap-vscode-js').setup({
         debugger_path = '/Users/danseravalli/Developer/build/vscode-js-debug',
-        adapters = { 'pwa-node', 'pwa-chrome' },
+        adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
       })
 
-      for _, language in ipairs({ "typescript", "javascript" }) do
-        require("dap").configurations[language] = {
-          {
-            type = "pwa-node",
-            request = "launch",
-            name = "Launch file",
-            program = "${file}",
-            cwd = "${workspaceFolder}",
+      require("dap").configurations["javascript"] = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch current file",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+      }
+      require("dap").configurations["typescript"] = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch current file (Typescript)",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+          runtimeArgs = { '--loader=ts-node/esm' },
+          runtimeExecutable = "node",
+          sourceMaps = true,
+          protocol = "inspector",
+          outFiles = { "${workspaceFolder}/**/**/*", "!**/node_modules/**" },
+          skipFiles = { '<node_internals>/**', 'node_modules/**' },
+          resolveSourceMapLocations = {
+            "${workspaceFolder}/**",
+            "!**/node_modules/**",
           },
-          {
-            type = "pwa-node",
-            request = "attach",
-            name = "Attach",
-            processId = require 'dap.utils'.pick_process,
-            cwd = "${workspaceFolder}",
-          }
-        }
-      end
+        },
+      }
     end,
   }
 }
