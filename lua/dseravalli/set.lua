@@ -24,8 +24,6 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.wrap = false
 vim.o.updatetime = 50
-vim.o.timeout = true
-vim.o.timeoutlen = 300
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
