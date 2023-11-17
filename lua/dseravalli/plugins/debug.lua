@@ -1,99 +1,99 @@
 return {
-  {
-    'mfussenegger/nvim-dap',
-    dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'williamboman/mason.nvim',
-      'jay-babu/mason-nvim-dap.nvim',
-      'leoluz/nvim-dap-go',
-      'mxsdev/nvim-dap-vscode-js',
-    },
-    config = function()
-      local dap = require 'dap'
-      local dapui = require 'dapui'
-
-      require('mason-nvim-dap').setup {
-        automatic_setup = true,
-
-        handlers = {},
-
-        ensure_installed = {
-          'delve',
+    {
+        'mfussenegger/nvim-dap',
+        dependencies = {
+            'rcarriga/nvim-dap-ui',
+            'williamboman/mason.nvim',
+            'jay-babu/mason-nvim-dap.nvim',
+            'leoluz/nvim-dap-go',
+            'mxsdev/nvim-dap-vscode-js',
         },
-      }
+        config = function()
+            local dap = require 'dap'
+            local dapui = require 'dapui'
 
-      vim.keymap.set('n', '<leader>ds', dap.continue, { desc = 'Debug: Start/Continue' })
-      vim.keymap.set('n', '<leader>dl', dap.step_into, { desc = 'Debug: Step Into' })
-      vim.keymap.set('n', '<leader>dj', dap.step_over, { desc = 'Debug: Step Over' })
-      vim.keymap.set('n', '<leader>dh', dap.step_out, { desc = 'Debug: Step Out' })
-      vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-      vim.keymap.set('n', '<leader>B', function()
-        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-      end, { desc = 'Debug: Set Breakpoint' })
+            require('mason-nvim-dap').setup {
+                automatic_setup = true,
 
-      -- Dap UI setup
-      dapui.setup {
-        -- Set icons to characters that are more likely to work in every terminal.
-        icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-        controls = {
-          icons = {
-            pause = '⏸',
-            play = '▶',
-            step_into = '⏎',
-            step_over = '⏭',
-            step_out = '⏮',
-            step_back = 'b',
-            run_last = '▶▶',
-            terminate = '⏹',
-            disconnect = '⏏',
-          },
-        },
-      }
+                handlers = {},
 
-      -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
+                ensure_installed = {
+                    'delve',
+                },
+            }
 
-      dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-      dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-      dap.listeners.before.event_exited['dapui_config'] = dapui.close
+            vim.keymap.set('n', '<leader>ds', dap.continue, { desc = 'Debug: Start/Continue' })
+            vim.keymap.set('n', '<leader>dl', dap.step_into, { desc = 'Debug: Step Into' })
+            vim.keymap.set('n', '<leader>dj', dap.step_over, { desc = 'Debug: Step Over' })
+            vim.keymap.set('n', '<leader>dh', dap.step_out, { desc = 'Debug: Step Out' })
+            vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+            vim.keymap.set('n', '<leader>B', function()
+                dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+            end, { desc = 'Debug: Set Breakpoint' })
 
-      -- Install golang specific config
-      require('dap-go').setup()
+            -- Dap UI setup
+            dapui.setup {
+                -- Set icons to characters that are more likely to work in every terminal.
+                icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+                controls = {
+                    icons = {
+                        pause = '⏸',
+                        play = '▶',
+                        step_into = '⏎',
+                        step_over = '⏭',
+                        step_out = '⏮',
+                        step_back = 'b',
+                        run_last = '▶▶',
+                        terminate = '⏹',
+                        disconnect = '⏏',
+                    },
+                },
+            }
 
-      -- Install JS specific config
-      require('dap-vscode-js').setup({
-        debugger_path = '/Users/danseravalli/Developer/build/vscode-js-debug',
-        adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
-      })
+            -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+            vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
-      require("dap").configurations["javascript"] = {
-        {
-          type = "pwa-node",
-          request = "launch",
-          name = "Launch current file",
-          program = "${file}",
-          cwd = "${workspaceFolder}",
-        },
-      }
-      require("dap").configurations["typescript"] = {
-        {
-          type = "pwa-node",
-          request = "launch",
-          name = "Launch current file (Typescript)",
-          program = "${file}",
-          cwd = "${workspaceFolder}",
-          runtimeArgs = { '--loader=ts-node/esm' },
-          runtimeExecutable = "node",
-          sourceMaps = true,
-          protocol = "inspector",
-          outFiles = { "${workspaceFolder}/**/**/*", "!**/node_modules/**" },
-          skipFiles = { '<node_internals>/**', 'node_modules/**' },
-          resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-          },
-        },
-      }
-    end,
-  }
+            dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+            dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+            dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+            -- Install golang specific config
+            require('dap-go').setup()
+
+            -- Install JS specific config
+            require('dap-vscode-js').setup({
+                debugger_path = '/Users/danseravalli/Developer/build/vscode-js-debug',
+                adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
+            })
+
+            require("dap").configurations["javascript"] = {
+                {
+                    type = "pwa-node",
+                    request = "launch",
+                    name = "Launch current file",
+                    program = "${file}",
+                    cwd = "${workspaceFolder}",
+                },
+            }
+            require("dap").configurations["typescript"] = {
+                {
+                    type = "pwa-node",
+                    request = "launch",
+                    name = "Launch current file (Typescript)",
+                    program = "${file}",
+                    cwd = "${workspaceFolder}",
+                    -- runtimeArgs = { '--loader=ts-node/esm' },
+                    runtimeExecutable = "ts-node",
+                    sourceMaps = true,
+                    protocol = "inspector",
+                    outFiles = { "${workspaceFolder}/**/**/*", "!**/node_modules/**" },
+                    skipFiles = { '<node_internals>/**', 'node_modules/**' },
+                    resolveSourceMapLocations = {
+                        "${workspaceFolder}/**",
+                        "!**/node_modules/**",
+                    },
+                },
+            }
+        end,
+    }
 }
