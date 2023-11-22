@@ -7,6 +7,7 @@ return {
             'jay-babu/mason-nvim-dap.nvim',
             'leoluz/nvim-dap-go',
             'mxsdev/nvim-dap-vscode-js',
+            'mfussenegger/nvim-dap-python'
         },
         config = function()
             local dap = require 'dap'
@@ -18,6 +19,7 @@ return {
                 handlers = {},
 
                 ensure_installed = {
+                    'python',
                     'delve',
                 },
             }
@@ -62,6 +64,9 @@ return {
 
             -- Install golang specific config
             require('dap-go').setup()
+
+            -- Install python specific config
+            require('dap-python').setup('/Users/danseravalli/.pyenv/shims/python3')
 
             -- Install JS specific config
             require('dap-vscode-js').setup({
