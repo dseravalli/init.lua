@@ -50,7 +50,53 @@ return {
             require('dap-go').setup()
 
             -- Install python specific config
-            require('dap-python').setup('/Users/danseravalli/.pyenv/shims/python3')
+            --
+            require('dap').configurations['python'] = {
+                -- {
+                --     type = 'python',
+                --     request = 'launch',
+                --     name = 'Launch file (justMyCode = false)',
+                --     program = '${file}',
+                --     justMyCode = false,
+                -- },
+                -- {
+                --     type = 'python',
+                --     request = 'launch',
+                --     name = 'Launch file with arguments (justMyCode = false)',
+                --     program = '${file}',
+                --     justMyCode = false,
+                --     args = function()
+                --         local args_string = vim.fn.input('Arguments: ')
+                --         return vim.split(args_string, ' +')
+                --     end,
+                -- },
+                {
+                    type = 'python',
+                    request = 'launch',
+                    name = 'Launch file (console = integratedTerminal, justMyCode = false)',
+                    program = '${file}',
+                    console = 'integratedTerminal',
+                    justMyCode = false,
+                },
+                -- {
+                --     type = 'python',
+                --     request = 'launch',
+                --     name = 'Launch file with arguments (console = integratedTerminal, justMyCode = false)',
+                --     program = '${file}',
+                --     console = 'integratedTerminal',
+                --     justMyCode = false,
+                --     args = function()
+                --         local args_string = vim.fn.input('Arguments: ')
+                --         return vim.split(args_string, ' +')
+                --     end,
+                -- },
+            }
+
+            require('dap-python').setup('/Users/danseravalli/.pyenv/shims/python3', {
+                include_configs = false,
+                console = 'integratedTerminal',
+                pythonPath = nil,
+            })
 
             -- Install JS specific config
             require('dap-vscode-js').setup({
