@@ -37,23 +37,7 @@ return {
             end, { desc = 'Debug: Set Breakpoint' })
 
             -- Dap UI setup
-            dapui.setup {
-                -- Set icons to characters that are more likely to work in every terminal.
-                icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-                controls = {
-                    icons = {
-                        pause = '⏸',
-                        play = '▶',
-                        step_into = '⏎',
-                        step_over = '⏭',
-                        step_out = '⏮',
-                        step_back = 'b',
-                        run_last = '▶▶',
-                        terminate = '⏹',
-                        disconnect = '⏏',
-                    },
-                },
-            }
+            dapui.setup()
 
             -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
             vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
