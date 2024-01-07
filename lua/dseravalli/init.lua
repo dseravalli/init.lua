@@ -207,8 +207,13 @@ mason_lspconfig.setup_handlers {
 }
 
 vim.filetype.add({
-  pattern = {
-    ['.env.*'] = 'sh',
+  extension = {
+    keymap = 'devicetree',
+  },
+  filename = {
     ['Podfile'] = 'ruby',
+  },
+  pattern = {
+    ['%.env%..*'] = 'sh',
   },
 })
