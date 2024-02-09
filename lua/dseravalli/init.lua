@@ -209,6 +209,7 @@ mason_lspconfig.setup_handlers {
 vim.filetype.add({
   extension = {
     keymap = 'devicetree',
+    templ = 'templ',
   },
   filename = {
     ['Podfile'] = 'ruby',
