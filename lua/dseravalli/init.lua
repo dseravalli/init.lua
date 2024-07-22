@@ -171,8 +171,12 @@ local servers = {
   pyright = {},
   tsserver = {},
   solargraph = {},
+  prismals = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-
+  tailwindcss = {
+    filetypes = { 'html', 'css', 'templ', 'astro', 'javascript', 'typescript', 'react', 'svelte', 'vue' },
+    init_options = { userLanguages = { templ = 'html' } },
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -202,6 +206,7 @@ mason_lspconfig.setup_handlers {
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+      init_options = (servers[server_name] or {}).init_options,
     }
   end,
 }
@@ -216,5 +221,6 @@ vim.filetype.add({
   },
   pattern = {
     ['%.env%..*'] = 'sh',
+    ['.*%.json%.jbuilder'] = 'ruby'
   },
 })
