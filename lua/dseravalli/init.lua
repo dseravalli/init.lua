@@ -170,7 +170,7 @@ local servers = {
   rust_analyzer = {},
   gopls = {},
   pyright = {},
-  tsserver = {},
+  ts_ls = {},
   solargraph = {},
   prismals = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },

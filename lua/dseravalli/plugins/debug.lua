@@ -7,7 +7,8 @@ return {
       'jay-babu/mason-nvim-dap.nvim',
       'leoluz/nvim-dap-go',
       'mxsdev/nvim-dap-vscode-js',
-      'mfussenegger/nvim-dap-python'
+      'mfussenegger/nvim-dap-python',
+      'nvim-neotest/nvim-nio'
     },
     config = function()
       local dap = require 'dap'
