@@ -4,7 +4,7 @@ return {
   'mbbill/undotree',
   'szw/vim-maximizer',
   'christoomey/vim-tmux-navigator',
-  'github/copilot.vim',
+  -- 'github/copilot.vim',
   'joerdav/templ.vim',
 
   { 'folke/which-key.nvim',  opts = {} },
@@ -75,4 +75,18 @@ return {
   },
 
   'vrischmann/tree-sitter-templ',
+
+  {
+    'nvimtools/none-ls.nvim',
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.isort,
+          null_ls.builtins.formatting.black,
+        },
+      })
+    end,
+  }
 }
