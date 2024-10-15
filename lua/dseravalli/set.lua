@@ -16,7 +16,7 @@ vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.swapfile = false
 
 vim.o.termguicolors = true
-vim.o.colorcolumn = 80
+vim.o.colorcolumn = "80"
 vim.o.scrolloff = 8
 vim.o.tabstop = 2
 vim.o.softtabstop = 2

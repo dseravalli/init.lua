@@ -14,6 +14,8 @@ return {
       local dap = require 'dap'
       local dapui = require 'dapui'
 
+      vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+
       require('mason-nvim-dap').setup {
         automatic_setup = true,
 
