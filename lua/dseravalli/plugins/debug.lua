@@ -65,7 +65,7 @@ return {
         },
       }
 
-      require('dap-python').setup('/Users/danseravalli/.pyenv/shims/python3', {
+      require('dap-python').setup('/Users/dseravalli/.pyenv/shims/python3', {
         include_configs = false,
         console = 'integratedTerminal',
         pythonPath = nil,
@@ -73,7 +73,7 @@ return {
 
       -- Install JS specific config
       require('dap-vscode-js').setup({
-        debugger_path = '/Users/danseravalli/Developer/build/vscode-js-debug',
+        debugger_path = '/Users/dseravalli/Developer/build/vscode-js-debug',
         adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
       })
 
