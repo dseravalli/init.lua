@@ -7,7 +7,14 @@ return {
   -- 'github/copilot.vim',
   'joerdav/templ.vim',
 
-  { 'folke/which-key.nvim',  opts = {} },
+  {
+    'folke/which-key.nvim',
+    opts = {},
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'echasnovski/mini.icons'
+    },
+  },
 
   {
     -- Set lualine as statusline
@@ -56,7 +63,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require("refactoring").setup()
+      require("refactoring").setup({})
     end,
   },
 
@@ -108,5 +115,7 @@ return {
         }
       })
     end,
-  }
+  },
+
+  "HiPhish/jinja.vim",
 }

@@ -1,3 +1,20 @@
+require('which-key').add({
+  { "<leader>s",  group = "[S]earch" },
+  -- { "<leader>s_", hidden = true },
+  { "<leader>w",  group = "[W]orkspace" },
+  { "<leader>r",  group = "Refactor & Rename" },
+  { "<leader>r_", hidden = true },
+  -- { "<leader>w_", hidden = true },
+  -- { "<leader>d",  group = "[D]ebug" },
+  -- { "<leader>d_", hidden = true },
+  -- { "<leader>g",  group = "[G]it" },
+  -- { "<leader>g_", hidden = true },
+  -- { "<leader>h",  group = "More  git" },
+  -- { "<leader>h_", hidden = true },
+  -- { "<leader>r",  group = "[R]ename" },
+  -- { "<leader>r_", hidden = true },
+})
+
 vim.keymap.set('n', 'Q', '<Nop>')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -8,7 +25,8 @@ vim.keymap.set('n', 'bn', ':bn<CR>')
 vim.keymap.set('n', 'bp', ':bp<CR>')
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set('n', '<leader>c', ':BufferKill<CR>', { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>g", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Gsub word under cursor" })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -43,10 +61,18 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>ps', function()
   require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") })
-end)
+end, { desc = '[P]roject [S]earch' })
 
 -- refactoring plugin
-vim.keymap.set({ "n", "x" }, "<leader>rr", function() require('telescope').extensions.refactoring.refactors() end)
+vim.keymap.set({ "n", "x" }, "<leader>rr", function() require('telescope').extensions.refactoring.refactors() end,
+  { desc = "Refactoring menu" })
+vim.keymap.set("x", "<leader>re", ":Refactor extract ")
+vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ")
+vim.keymap.set("x", "<leader>rv", ":Refactor extract_var ")
+vim.keymap.set({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
+vim.keymap.set("n", "<leader>rI", ":Refactor inline_func")
+vim.keymap.set("n", "<leader>rb", ":Refactor extract_block")
+vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file")
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle undotree" })
 

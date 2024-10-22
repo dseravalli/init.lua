@@ -142,15 +142,6 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 end
 
--- document existing key chains
--- require('which-key').register {
---   ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
---   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
---   ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
---   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
---   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
---   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
--- }
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -186,7 +177,7 @@ local servers = {
   ts_ls = {},
   solargraph = {},
   prismals = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  html = { filetypes = { 'html', 'twig', 'hbs', 'html.jinja' } },
   tailwindcss = {
     filetypes = { 'html', 'css', 'templ', 'astro', 'javascript', 'typescript', 'react', 'svelte', 'vue' },
     init_options = { userLanguages = { templ = 'html' } },
