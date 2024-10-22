@@ -2,6 +2,8 @@ require("dseravalli.set")
 require("dseravalli.remap")
 require("dseravalli.lazy_init")
 
+vim.api.nvim_command('command! BufferKill lua require("dseravalli.bufkill").buf_kill()')
+
 local augroup = vim.api.nvim_create_augroup
 local DseravalliGroup = augroup('DSeravalli', {})
 local yank_group = augroup('HighlightYank', {})
@@ -38,4 +40,3 @@ autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 })
 
-vim.api.nvim_command('command! BufferKill lua require("dseravalli.bufkill").buf_kill()')
