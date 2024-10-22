@@ -2,6 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "nvim-lua/plenary.nvim",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "folke/lazydev.nvim",
@@ -10,7 +11,8 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "rafamadriz/friendly-snippets",
-      "j-hui/fidget.nvim"
+      "j-hui/fidget.nvim",
+      'nvimtools/none-ls.nvim',
     },
 
     config = function()
@@ -141,6 +143,13 @@ return {
           { name = "luasnip",  group_index = 2 },
         }
       }
+
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.isort,
+        },
+      })
 
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
