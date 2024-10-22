@@ -169,7 +169,20 @@ local servers = {
   groovyls = {},
   rust_analyzer = {},
   gopls = {},
-  pyright = {},
+  pyright = {
+    pyright = {
+      disableOrganizeImports = true,
+      disableTaggedHints = true,
+    },
+    python = {
+      analysis = {
+        typeCheckingMode = "standard",
+        diagnosticSeverityOverrides = {
+          reportUndefinedVariable = "none",
+        },
+      }
+    }
+  },
   ts_ls = {},
   solargraph = {},
   prismals = {},
@@ -182,6 +195,15 @@ local servers = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+    },
+  },
+  ruff = {
+    init_options = {
+      settings = {
+        lint = {
+          select = { 'E', 'F', 'B', 'Q', 'ARG' },
+        },
+      },
     },
   },
 }
