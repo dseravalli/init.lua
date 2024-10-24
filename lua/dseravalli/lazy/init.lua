@@ -3,7 +3,7 @@ return {
   "tpope/vim-rhubarb",
   "szw/vim-maximizer",
   "christoomey/vim-tmux-navigator",
-  "HiPhish/jinja.vim",
   { "numToStr/Comment.nvim", opts = {} },
+  -- "HiPhish/jinja.vim",
   -- "github/copilot.vim",
 }

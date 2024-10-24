@@ -46,7 +46,7 @@ return {
         ts_ls = {},
         solargraph = {},
         prismals = {},
-        html = { filetypes = { 'html', 'twig', 'hbs', 'html.jinja' } },
+        html = { filetypes = { 'html', 'twig', 'hbs' } },
         tailwindcss = {
           filetypes = { 'html', 'css', 'templ', 'astro', 'javascript', 'typescript', 'react', 'svelte', 'vue' },
           init_options = { userLanguages = { templ = 'html' } },
