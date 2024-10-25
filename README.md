@@ -1,3 +1,3 @@
-# init.lua
+# nvim.config
 
 My Neovim config
