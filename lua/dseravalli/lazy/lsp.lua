@@ -164,23 +164,26 @@ return {
         },
       })
 
-      require("mason-registry").refresh()
-      local mr = require("mason-registry")
+      vim.defer_fn(function()
+        local mr = require("mason-registry")
 
+        -- List of formatters and linters to install --
+        local ensure_installed_tools = {
+          "shellcheck",
+          "shfmt",
+          "isort",
+        }
 
-      -- List of formatters and linters to install --
-      local ensure_installed_tools = {
-        "shellcheck",
-        "shfmt",
-        "isort",
-      }
+        mr.refresh(function()
+          for _, tool in ipairs(ensure_installed_tools) do
+            local p = mr.get_package(tool)
+            if not p:is_installed() then
+              p:install()
+            end
+          end
+        end)
+      end, 100)
 
-      for _, tool in ipairs(ensure_installed_tools) do
-        local p = mr.get_package(tool)
-        if not p:is_installed() then
-          p:install()
-        end
-      end
 
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
