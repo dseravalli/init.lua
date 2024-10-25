@@ -3,7 +3,6 @@ return {
   opts = {},
   dependencies = {
     'nvim-tree/nvim-web-devicons',
-    'echasnovski/mini.icons'
   },
   config = function()
     require('which-key').add({
